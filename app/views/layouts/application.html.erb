@@ -12,9 +12,7 @@
   <%= @page_title || "Pragmatic Bookshelf" %>
 </div>
 <div id="columns">
-  <div id="main">
-    <%= yield %>
-  </div>
+
   <div id="side">
 
     <% if @cart %>
@@ -22,13 +20,27 @@
             <%= render @cart %>
         <% end %>
     <% end %>
+    <ul>
+      <li><a href="http://www....">Home</a></li>
+      <li><a href="http://www..../faq">Questions</a></li>
+      <li><a href="http://www..../news">News</a></li>
+      <li><a href="http://www..../contact">Contact</a></li>
+    </ul>
+
+    <% if session[:user_id] %>
         <ul>
-          <li><a href="http://www....">Home</a></li>
-          <li><a href="http://www..../faq">Questions</a></li>
-          <li><a href="http://www..../news">News</a></li>
-          <li><a href="http://www..../contact">Contact</a></li>
+          <li><%= link_to 'Orders', orders_path %></li>
+          <li><%= link_to 'Products', products_path %></li>
+          <li><%= link_to 'Users', users_path %></li>
         </ul>
-        </div>
-        </div>
+    <%= button_to 'Logout', logout_path, method: :delete %>
+    <% end %>
+  </div>
+  <div id="main">
+    <%= yield %>
+  </div>
+
+</div>
+
 </body>
 </html>
